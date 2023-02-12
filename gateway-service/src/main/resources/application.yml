@@ -1,0 +1,18 @@
+server:
+  port: 8999
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      #Route Mapping
+      - id: loanService               #RouteIdentifier
+        uri: http://localhost:8080   #Respective microservice URL which needs to be mapped
+        predicates:
+        - Path=/loan-service/**       #Request Context Path Mapping
+
+logging:
+  level:
+    org.springframework.web.HttpLogging: TRACE
+    reactor.netty.http.server: DEBUG
+    reactor.netty.http.client: DEBUG
